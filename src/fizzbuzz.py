@@ -3,7 +3,7 @@ from src.predicate import is_multiple_of, and_p, or_p, contains
 from collections.abc import Callable
 
 
-def fizzbuzz(number: int, numbers: list[int] = []) -> int:
+def fizzbuzz(numbers: list[int] = []) -> int:
     rule_set = [
         [
             and_p(is_multiple_of(3), is_multiple_of(5)),
@@ -19,10 +19,7 @@ def fizzbuzz(number: int, numbers: list[int] = []) -> int:
         ],
     ]
 
-    if len(numbers) > 0:
-        return [singleFizzbuzz(rule_set, n) for n in numbers]
-
-    return singleFizzbuzz(rule_set, number)
+    return [singleFizzbuzz(rule_set, n) for n in numbers]
 
 
 def singleFizzbuzz(

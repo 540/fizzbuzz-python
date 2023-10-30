@@ -39,8 +39,8 @@ def test_returns_Buzz_for_number_containing_5():
 
 
 def test_returns_multiple_numbers():
-    assert_that(fizzbuzz(53, [1, 2, 3, 4, 5]), is_(["1", "2", "Fizz", "4", "Buzz"]))
+    assert_that(fizzbuzz([1, 2, 3, 4, 5]), is_(["1", "2", "Fizz", "4", "Buzz"]))
 
 
 def run_fizzbuzz(number: int):
-    return fizzbuzz(number, [number])[0]
+    return fizzbuzz([number])[0]
