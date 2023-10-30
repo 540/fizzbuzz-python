@@ -36,3 +36,7 @@ def test_returns_Fizz_for_number_containing_3():
 
 def test_returns_Buzz_for_number_containing_5():
     assert_that(fizzbuzz(52), is_("Buzz"))
+
+
+def test_returns_multiple_numbers():
+    assert_that(fizzbuzz(53, [1, 2, 3, 4, 5]), is_(["1", "2", "Fizz", "4", "Buzz"]))
