@@ -1,21 +1,25 @@
+from src.predicate import is_multiple_of, and_p, or_p, contains
+
+
 def fizzbuzz(number: int) -> int:
-    if _is_multiple_of_5(number) and _is_multiple_of_3(number):
-        return "FizzBuzz"
-    if _is_multiple_of_3(number):
-        return "Fizz"
-    if _is_multiple_of_5(number):
-        return "Buzz"
+    rule_set = [
+        [
+            and_p(is_multiple_of(3), is_multiple_of(5)),
+            lambda number: "FizzBuzz",
+        ],
+        [
+            or_p(is_multiple_of(3), contains(3)),
+            lambda number: "Fizz",
+        ],
+        [
+            or_p(is_multiple_of(5), contains(5)),
+            lambda number: "Buzz",
+        ],
+    ]
 
-    return str(number)
+    apply_rule = next(
+        (predicate[1] for predicate in rule_set if predicate[0](number)),
+        str,
+    )
 
-
-def _is_multiple_of(multiple: int) -> int:
-    return lambda number: number % multiple == 0
-
-
-def _is_multiple_of_3(number: int) -> int:
-    return _is_multiple_of(3)(number)
-
-
-def _is_multiple_of_5(number: int) -> int:
-    return _is_multiple_of(5)(number)
+    return apply_rule(number)

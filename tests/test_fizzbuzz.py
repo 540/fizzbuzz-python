@@ -28,3 +28,11 @@ def test_returns_Buzz_for_10_number():
 
 def test_returns_FizzBuzz_for_15_number():
     assert_that(fizzbuzz(15), is_("FizzBuzz"))
+
+
+def test_returns_Fizz_for_number_containing_3():
+    assert_that(fizzbuzz(13), is_("Fizz"))
+
+
+def test_returns_Buzz_for_number_containing_5():
+    assert_that(fizzbuzz(52), is_("Buzz"))
