@@ -1,9 +1,8 @@
-from typing import Tuple
-from src.predicate import is_multiple_of, and_p, or_p, contains
 from collections.abc import Callable
+from src.predicate import is_multiple_of, and_p, or_p, contains
 
 
-def fizzbuzz(numbers: list[int] = []) -> int:
+def fizzbuzz() -> int:
     rule_set = [
         [
             and_p(is_multiple_of(3), is_multiple_of(5)),
@@ -19,11 +18,11 @@ def fizzbuzz(numbers: list[int] = []) -> int:
         ],
     ]
 
-    return [singleFizzbuzz(rule_set, n) for n in numbers]
+    return [singleFizzbuzz(rule_set, n) for n in range(1, 101)]
 
 
 def singleFizzbuzz(
-    rule_set: list[Tuple[Callable[[int], bool], Callable[[int], str]]], number: int
+    rule_set: list[tuple[Callable[[int], bool], Callable[[int], str]]], number: int
 ) -> str:
     apply_rule = next(
         (predicate[1] for predicate in rule_set if predicate[0](number)),
